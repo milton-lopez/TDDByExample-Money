@@ -29,11 +29,10 @@
         public override string ToString() =>
             Amount + " " + Currency;
 
-        public override bool Equals(object obj)
-        {
-            Money money = (Money)obj;
-            return Amount == money.Amount && Currency.Equals(money.Currency);
-        }
+        public override bool Equals(object obj) =>
+            obj is Money money ?
+                Amount == money.Amount && Currency.Equals(money.Currency) :
+                base.Equals(obj);
 
         public override int GetHashCode() =>
             Amount.GetHashCode() ^ Currency.GetHashCode();

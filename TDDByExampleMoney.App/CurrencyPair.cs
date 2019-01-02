@@ -11,11 +11,10 @@
             _to = to;
         }
 
-        public override bool Equals(object obj)
-        {
-            var pair = (CurrencyPair)obj;
-            return _from.Equals(pair._from) && _to.Equals(pair._to);
-        }
+        public override bool Equals(object obj) =>
+            obj is CurrencyPair pair ?
+                _from.Equals(pair._from) && _to.Equals(pair._to) :
+                base.Equals(obj);
 
         public override int GetHashCode() =>
             (_from + _to).GetHashCode();
